@@ -1,12 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import { GlobalStyle } from './GlobalStyle';
 import { ThemeProvider } from 'styled-components';
-import ImageCard from './components/ImageCard';
-import ImageLoad from './components/ImageLoad';
-import DragAndDrop from './components/DragAndDrop';
-import NewDrag from './components/DragAndDrop';
-import DragAndDropList from './components/DragAndDrop';
 import NewDragAndDrop from './components/NewDragAndDrop';
 
 
@@ -43,12 +37,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         
-
-
         <NewDragAndDrop />
         
-
-
       </ThemeProvider>
 
       

@@ -5,18 +5,14 @@ import GalleryData from "../GalleryData";
 import './imageCard.css';
 import styled from "styled-components";
 
+
 const NewDragAndDrop = () => {
+
     const [items, setItems] = useState([]);
     const [draggingItem, setDraggingItem] = useState(null);
-    //new
     const [featureImage, setFeatureImage] = useState(items[0]);
     const [selectedImages, setSelectedImages] = useState([]);
-   // const [uploadImage, setUploadImage] = useState(null);
-   const [selectedImagesCount, setSelectedImagesCount] = useState(0); // Initialize the count to 0
-
-
-
-
+  
   
     useEffect(()=>{
       setItems(GalleryData);   
@@ -36,7 +32,7 @@ const NewDragAndDrop = () => {
       reader.onload = () => {
         const newImageObject = {
           id: items.id+1, 
-          src: reader.result, // Base64 encoded image data
+          src: reader.result, 
           alt: file.name, // Image description
         };
 
@@ -47,7 +43,6 @@ const NewDragAndDrop = () => {
   };
 
     // delete function
-
     const handleDelete = () => {
       const updatedImages = items.filter(
         (image) => !selectedImages.includes(image.id)
@@ -60,14 +55,17 @@ const NewDragAndDrop = () => {
     const handleFeatureImage = (image) => {
         setFeatureImage(image);
       };
+
   
     const handleDragStart = (e, item) => {
       setDraggingItem(item);
     };
+
   
     const handleDragOver = (e) => {
       e.preventDefault();
     };
+
   
     const handleDrop = (e, index) => {
       e.preventDefault();
@@ -83,22 +81,22 @@ const NewDragAndDrop = () => {
         setDraggingItem(null);
       }
     };
+
   
     return (
       <Wrapper>
-      <div className="container">
-        <div className="grid grid-two-column">
-        <h1 id="heading">Image Gallery</h1>
-        <button className="delete-btn" onClick={handleDelete}>Delete Selected</button>
 
+      <div className="container">
+
+        <div className="grid grid-two-column">
+        <h1 className="heading">Image Gallery</h1>
+        <button className="delete-btn" onClick={handleDelete}>Delete Selected</button>
         </div>
-     
-      <hr/>
+
+        <hr/>
   
         <div className="grid grid-four-column">
-
-            {items.map((item, index) => (
-              
+            {items.map((item, index) => (   
             <div 
              className={`gallery-item ${item === featureImage ? "feature" : ""} ${
                 selectedImages.includes(item.id) ? "selected" : ""
@@ -108,11 +106,10 @@ const NewDragAndDrop = () => {
               draggable
               onDragStart={(e) => handleDragStart(e, item)}
               onDragOver={handleDragOver}
-              onDrop={(e) => handleDrop(e, index)}
-              >
+              onDrop={(e) => handleDrop(e, index)} >
+
               <img src={item.src} alt={item.title} />
                
-
               <input
               type="checkbox"
               onChange={() => {
@@ -133,20 +130,13 @@ const NewDragAndDrop = () => {
             </div>
           )) }
 
-
+    
      <div className="gallery-item">
       <input type="file" accept="image/*" onChange={handleImageUpload} />
      
      </div>
 
-     
-
-
-
-      </div>
-
-     
-          
+      </div>  
         
       </div>
       </Wrapper>
@@ -165,15 +155,7 @@ const NewDragAndDrop = () => {
     height: 400px;
   }
   
-  #heading {
-    text-align: left;
-  }
-
  
-
-  .heading-section{
-    display: flex;
-  }
   .delete-btn{
     text-align: right;
     background-color: #3498db;
@@ -189,9 +171,11 @@ const NewDragAndDrop = () => {
       width: 400px;
       height: 400px;
     }
+
     .heading{
       text-align: left;
     }
+
     display: grid;
     grid-template-columns: 0.4fr 1fr;
     gap: .5rem;
@@ -218,8 +202,6 @@ const NewDragAndDrop = () => {
    }
     
     
-  
-  
   
     .grid {
       flex-direction: column;
@@ -259,12 +241,12 @@ const NewDragAndDrop = () => {
       flex-direction: column;
       order: 1;
   
-      .grid-four-column {
+      .grid-three-column {
         grid-template-rows: 1fr;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
     }
   `;
 
 
-export default NewDragAndDrop
+export default NewDragAndDrop;
